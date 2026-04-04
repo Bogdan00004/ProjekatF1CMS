@@ -49,13 +49,12 @@ namespace ProjekatF1CMS.Pages
             string username = UsernameTextBox.Text.Trim();
             string password = PasswordBox.Password;
 
-            User user = users.FirstOrDefault(u =>
-                u.Username == username && u.Password == password);
+            User user = users.FirstOrDefault(u =>u.Username == username && u.Password == password);
 
             if (user != null)
             {
                 mainWindow.LoggedInUser = user;
-                //mainWindow.NavigateToPage(new TeamsTablePage());
+                mainWindow.NavigateToPage(new TeamsTablePage());
             }
             else
             {

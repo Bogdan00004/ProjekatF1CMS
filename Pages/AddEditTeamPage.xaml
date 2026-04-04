@@ -1,0 +1,356 @@
+﻿<Page x:Class="ProjekatF1CMS.Pages.AddEditTeamPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:fa5="http://schemas.fontawesome.com/icons/"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjekatF1CMS.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="950"
+      Title="AddEditTeamPage"
+      Background="{StaticResource PrimaryBackgroundColor}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0"
+              Background="{StaticResource SecondaryBackgroundColor}"
+              Height="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <fa5:SvgAwesome
+                Grid.Column="0"
+                Icon="Solid_Edit"
+                Height="25"
+                Width="25"
+                Foreground="{StaticResource AccentColor}"
+                Margin="20,0,10,0"
+                VerticalAlignment="Center"/>
+
+            <Label x:Name="PageTitleLabel"
+                   Grid.Column="1"
+                   Content="ADD NEW TEAM"
+                   Style="{StaticResource TitleLabelStyle}"
+                   FontSize="22"
+                   VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Crvena linija -->
+        <Rectangle Grid.Row="0"
+                   Height="3"
+                   VerticalAlignment="Bottom"
+                   Fill="{StaticResource AccentColor}"/>
+
+        <!-- Forma -->
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="30,20,30,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Leva kolona -->
+                <StackPanel Grid.Column="0">
+
+                    <!-- Team Name -->
+                    <Label Content="Team Name"
+                           Style="{StaticResource PrimaryLabelStyle}"
+                           Margin="0,0,0,5"/>
+                    <TextBox x:Name="TeamNameTextBox"
+                             Style="{StaticResource PrimaryTextBoxStyle}"
+                             GotFocus="TeamNameTextBox_GotFocus"
+                             LostFocus="TeamNameTextBox_LostFocus"
+                             ToolTip="Enter the team name"/>
+                    <Label x:Name="TeamNameErrorLabel"
+                           Style="{StaticResource ValidationLabelStyle}"
+                           Content=""/>
+
+                    <!-- Headquarters -->
+                    <Label Content="Headquarters"
+                           Style="{StaticResource PrimaryLabelStyle}"
+                           Margin="0,10,0,5"/>
+                    <TextBox x:Name="HeadquartersTextBox"
+                             Style="{StaticResource PrimaryTextBoxStyle}"
+                             GotFocus="HeadquartersTextBox_GotFocus"
+                             LostFocus="HeadquartersTextBox_LostFocus"
+                             ToolTip="Enter the headquarters location"/>
+                    <Label x:Name="HeadquartersErrorLabel"
+                           Style="{StaticResource ValidationLabelStyle}"
+                           Content=""/>
+
+                    <!-- Engine Supplier -->
+                    <Label Content="Engine Supplier"
+                           Style="{StaticResource PrimaryLabelStyle}"
+                           Margin="0,10,0,5"/>
+                    <TextBox x:Name="EngineSupplierTextBox"
+                             Style="{StaticResource PrimaryTextBoxStyle}"
+                             GotFocus="EngineSupplierTextBox_GotFocus"
+                             LostFocus="EngineSupplierTextBox_LostFocus"
+                             ToolTip="Enter the engine supplier"/>
+                    <Label x:Name="EngineSupplierErrorLabel"
+                           Style="{StaticResource ValidationLabelStyle}"
+                           Content=""/>
+
+                    <!-- Year Founded -->
+                    <Label Content="Year Founded"
+                           Style="{StaticResource PrimaryLabelStyle}"
+                           Margin="0,10,0,5"/>
+                    <TextBox x:Name="YearFoundedTextBox"
+                             Style="{StaticResource PrimaryTextBoxStyle}"
+                             GotFocus="YearFoundedTextBox_GotFocus"
+                             LostFocus="YearFoundedTextBox_LostFocus"
+                             ToolTip="Enter the year the team was founded"/>
+                    <Label x:Name="YearFoundedErrorLabel"
+                           Style="{StaticResource ValidationLabelStyle}"
+                           Content=""/>
+
+                    <!-- Number of Championships -->
+                    <Label Content="Number of Championships"
+                           Style="{StaticResource PrimaryLabelStyle}"
+                           Margin="0,10,0,5"/>
+                    <TextBox x:Name="ChampionshipsTextBox"
+                             Style="{StaticResource PrimaryTextBoxStyle}"
+                             GotFocus="ChampionshipsTextBox_GotFocus"
+                             LostFocus="ChampionshipsTextBox_LostFocus"
+                             ToolTip="Enter the number of championships"/>
+                    <Label x:Name="ChampionshipsErrorLabel"
+                           Style="{StaticResource ValidationLabelStyle}"
+                           Content=""/>
+
+                    <!-- Logo -->
+                    <Label Content="Team Logo"
+                           Style="{StaticResource PrimaryLabelStyle}"
+                           Margin="0,10,0,5"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="LogoPathTextBox"
+                                 Grid.Column="0"
+                                 Style="{StaticResource PrimaryTextBoxStyle}"
+                                 IsReadOnly="True"
+                                 ToolTip="Select a logo image"/>
+                        <Button x:Name="BrowseLogoButton"
+                                Grid.Column="1"
+                                Width="40"
+                                Margin="5,0,0,0"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Click="BrowseLogoButton_Click"
+                                ToolTip="Browse for an image">
+                            <fa5:SvgAwesome Icon="Solid_FolderOpen"
+                                            Height="14"
+                                            Foreground="White"/>
+                        </Button>
+                    </Grid>
+                    <Label x:Name="LogoErrorLabel"
+                           Style="{StaticResource ValidationLabelStyle}"
+                           Content=""/>
+
+                    <!-- Logo Preview -->
+                    <Border Background="{StaticResource SecondaryBackgroundColor}"
+                            BorderBrush="{StaticResource BorderColor}"
+                            BorderThickness="1"
+                            Height="120"
+                            Margin="0,5,0,0"
+                            CornerRadius="4">
+                        <Image x:Name="LogoPreviewImage"
+                               Stretch="Uniform"
+                               Margin="10"/>
+                    </Border>
+
+                </StackPanel>
+
+                <!-- Desna kolona - RTF Editor -->
+                <StackPanel Grid.Column="2">
+
+                    <Label Content="Team Description"
+                           Style="{StaticResource PrimaryLabelStyle}"
+                           Margin="0,0,0,5"/>
+
+                    <!-- ToolBar za RichTextBox -->
+                    <ToolBar x:Name="EditorToolBar"
+                             Background="{StaticResource SecondaryBackgroundColor}"
+                             Margin="0,0,0,2">
+
+                        <ToggleButton x:Name="BoldToggleButton"
+                                      Command="EditingCommands.ToggleBold"
+                                      CommandTarget="{Binding ElementName=DescriptionRichTextBox}"
+                                      ToolTip="Bold"
+                                      Cursor="Hand"
+                                      Width="28" Height="28">
+                            <fa5:SvgAwesome Icon="Solid_Bold"
+                                            Height="12"
+                                            Foreground="White"/>
+                        </ToggleButton>
+
+                        <ToggleButton x:Name="ItalicToggleButton"
+                                      Command="EditingCommands.ToggleItalic"
+                                      CommandTarget="{Binding ElementName=DescriptionRichTextBox}"
+                                      ToolTip="Italic"
+                                      Cursor="Hand"
+                                      Width="28" Height="28">
+                            <fa5:SvgAwesome Icon="Solid_Italic"
+                                            Height="12"
+                                            Foreground="White"/>
+                        </ToggleButton>
+
+                        <ToggleButton x:Name="UnderlineToggleButton"
+                                      Command="EditingCommands.ToggleUnderline"
+                                      CommandTarget="{Binding ElementName=DescriptionRichTextBox}"
+                                      ToolTip="Underline"
+                                      Cursor="Hand"
+                                      Width="28" Height="28">
+                            <fa5:SvgAwesome Icon="Solid_Underline"
+                                            Height="12"
+                                            Foreground="White"/>
+                        </ToggleButton>
+
+                        <Separator/>
+
+                        <!-- Font Family -->
+                        <ComboBox x:Name="FontFamilyComboBox"
+                                  Width="150"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  IsTextSearchCaseSensitive="False"
+                                  SelectionChanged="FontFamilyComboBox_SelectionChanged"
+                                  ToolTip="Font family">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock MaxWidth="200"
+                                               FontFamily="{Binding Source}"
+                                               Text="{Binding Source}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <!-- Font Size -->
+                        <ComboBox x:Name="FontSizeComboBox"
+                                  Width="60"
+                                  Margin="5,0,0,0"
+                                  IsEditable="True"
+                                  SelectionChanged="FontSizeComboBox_SelectionChanged"
+                                  ToolTip="Font size"/>
+
+                        <Separator/>
+
+                        <!-- Boja teksta -->
+                        <ComboBox x:Name="TextColorComboBox"
+                                  Width="130"
+                                  SelectionChanged="TextColorComboBox_SelectionChanged"
+                                  ToolTip="Text color">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Width="16"
+                                                   Height="16"
+                                                   Margin="0,0,6,0"
+                                                   Fill="{Binding Name}"/>
+                                        <TextBlock Text="{Binding Name}"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                    </ToolBar>
+
+                    <!-- RichTextBox -->
+                    <RichTextBox x:Name="DescriptionRichTextBox"
+                                 Height="280"
+                                 Background="{StaticResource SecondaryBackgroundColor}"
+                                 Foreground="{StaticResource PrimaryTextColor}"
+                                 BorderBrush="{StaticResource BorderColor}"
+                                 BorderThickness="1"
+                                 Padding="8"
+                                 FontFamily="Segoe UI"
+                                 FontSize="13"
+                                 SelectionChanged="DescriptionRichTextBox_SelectionChanged"
+                                 ToolTip="Enter team description"/>
+
+                    <!-- Word count status bar -->
+                    <Border Background="{StaticResource SecondaryBackgroundColor}"
+                            BorderBrush="{StaticResource BorderColor}"
+                            BorderThickness="1,0,1,1">
+                        <Label x:Name="WordCountLabel"
+                               Content="Words: 0"
+                               Foreground="{StaticResource PlaceholderTextColor}"
+                               FontFamily="Segoe UI"
+                               FontSize="11"
+                               HorizontalAlignment="Right"
+                               Padding="8,4"/>
+                    </Border>
+
+                    <Label x:Name="DescriptionErrorLabel"
+                           Style="{StaticResource ValidationLabelStyle}"
+                           Content=""/>
+
+                    <!-- RTF fajl putanja - opciono -->
+                    <Label Content="RTF File (optional - auto-generated if empty)"
+                           Foreground="{StaticResource PlaceholderTextColor}"
+                           FontFamily="Segoe UI"
+                           FontSize="11"
+                           Margin="0,10,0,2"/>
+
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- Footer dugmad -->
+        <Grid Grid.Row="2" Margin="30,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="SaveButton"
+                    Grid.Column="1"
+                    Width="150"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Click="SaveButton_Click"
+                    ToolTip="Save the team">
+                <StackPanel Orientation="Horizontal">
+                    <fa5:SvgAwesome Icon="Solid_Save"
+                                    Height="13"
+                                    Foreground="White"
+                                    Margin="0,0,6,0"/>
+                    <TextBlock Text="SAVE"
+                               FontSize="12"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="CancelButton"
+                    Grid.Column="3"
+                    Width="150"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Click="CancelButton_Click"
+                    ToolTip="Cancel and go back">
+                <StackPanel Orientation="Horizontal">
+                    <fa5:SvgAwesome Icon="Solid_Times"
+                                    Height="13"
+                                    Foreground="{StaticResource SecondaryTextColor}"
+                                    Margin="0,0,6,0"/>
+                    <TextBlock Text="CANCEL"
+                               Foreground="{StaticResource SecondaryTextColor}"
+                               FontSize="12"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>
