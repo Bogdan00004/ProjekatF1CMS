@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjekatF1CMS.Models
+namespace ProjekatF1CMS.Model
 {
     [Serializable]
     public class User
