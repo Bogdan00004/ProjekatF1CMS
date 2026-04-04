@@ -166,9 +166,15 @@
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Background" Value="{StaticResource SecondaryBackgroundColor}"/>
+                    <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#333333"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{StaticResource SecondaryBackgroundColor}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>

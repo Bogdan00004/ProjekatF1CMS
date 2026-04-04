@@ -1,0 +1,232 @@
+﻿<Page x:Class="ProjekatF1CMS.Pages.TeamDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:fa5="http://schemas.fontawesome.com/icons/"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjekatF1CMS.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="950"
+      Title="TeamDetailsPage"
+      Background="{StaticResource PrimaryBackgroundColor}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0"
+              Background="{StaticResource SecondaryBackgroundColor}"
+              Height="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <fa5:SvgAwesome
+                Grid.Column="0"
+                Icon="Solid_Flag"
+                Height="25"
+                Width="25"
+                Foreground="{StaticResource AccentColor}"
+                Margin="20,0,10,0"
+                VerticalAlignment="Center"/>
+
+            <Label x:Name="PageTitleLabel"
+                   Grid.Column="1"
+                   Content="TEAM DETAILS"
+                   Style="{StaticResource TitleLabelStyle}"
+                   FontSize="22"
+                   VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Crvena linija -->
+        <Rectangle Grid.Row="0"
+                   Height="3"
+                   VerticalAlignment="Bottom"
+                   Fill="{StaticResource AccentColor}"/>
+
+        <!-- Sadržaj -->
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="30,20,30,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Leva kolona - info -->
+                <StackPanel Grid.Column="0">
+
+                    <!-- Logo -->
+                    <Border Background="{StaticResource SecondaryBackgroundColor}"
+                            BorderBrush="{StaticResource AccentColor}"
+                            BorderThickness="2"
+                            Height="180"
+                            CornerRadius="4"
+                            Margin="0,0,0,20">
+                        <Image x:Name="TeamLogoImage"
+                               Stretch="Uniform"
+                               Margin="15"/>
+                    </Border>
+
+                    <!-- Team Name -->
+                    <Label Content="TEAM NAME"
+                           Foreground="{StaticResource AccentColor}"
+                           FontFamily="Agency FB"
+                           FontSize="13"
+                           Padding="0"/>
+                    <Label x:Name="TeamNameValue"
+                           Style="{StaticResource TitleLabelStyle}"
+                           FontSize="24"
+                           HorizontalAlignment="Left"
+                           Margin="0,0,0,15"/>
+
+                    <!-- Separator -->
+                    <Rectangle Height="1"
+                               Fill="{StaticResource BorderColor}"
+                               Margin="0,0,0,15"/>
+
+                    <!-- Info grid -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Headquarters -->
+                        <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,15">
+                            <Label Content="HEADQUARTERS"
+                                   Foreground="{StaticResource AccentColor}"
+                                   FontFamily="Agency FB"
+                                   FontSize="12"
+                                   Padding="0"/>
+                            <Label x:Name="HeadquartersValue"
+                                   Foreground="{StaticResource PrimaryTextColor}"
+                                   FontFamily="Segoe UI"
+                                   FontSize="14"
+                                   Padding="0"/>
+                        </StackPanel>
+
+                        <!-- Engine Supplier -->
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,0,15">
+                            <Label Content="ENGINE SUPPLIER"
+                                   Foreground="{StaticResource AccentColor}"
+                                   FontFamily="Agency FB"
+                                   FontSize="12"
+                                   Padding="0"/>
+                            <Label x:Name="EngineSupplierValue"
+                                   Foreground="{StaticResource PrimaryTextColor}"
+                                   FontFamily="Segoe UI"
+                                   FontSize="14"
+                                   Padding="0"/>
+                        </StackPanel>
+
+                        <!-- Year Founded -->
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,10,15">
+                            <Label Content="YEAR FOUNDED"
+                                   Foreground="{StaticResource AccentColor}"
+                                   FontFamily="Agency FB"
+                                   FontSize="12"
+                                   Padding="0"/>
+                            <Label x:Name="YearFoundedValue"
+                                   Foreground="{StaticResource PrimaryTextColor}"
+                                   FontFamily="Segoe UI"
+                                   FontSize="14"
+                                   Padding="0"/>
+                        </StackPanel>
+
+                        <!-- Championships -->
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,15">
+                            <Label Content="CHAMPIONSHIPS"
+                                   Foreground="{StaticResource AccentColor}"
+                                   FontFamily="Agency FB"
+                                   FontSize="12"
+                                   Padding="0"/>
+                            <Label x:Name="ChampionshipsValue"
+                                   Foreground="{StaticResource PrimaryTextColor}"
+                                   FontFamily="Segoe UI"
+                                   FontSize="14"
+                                   Padding="0"/>
+                        </StackPanel>
+
+                        <!-- Date Added -->
+                        <StackPanel Grid.Row="2" Grid.Column="0" 
+                                    Grid.ColumnSpan="2" Margin="0,0,0,15">
+                            <Label Content="DATE ADDED"
+                                   Foreground="{StaticResource AccentColor}"
+                                   FontFamily="Agency FB"
+                                   FontSize="12"
+                                   Padding="0"/>
+                            <Label x:Name="DateAddedValue"
+                                   Foreground="{StaticResource PrimaryTextColor}"
+                                   FontFamily="Segoe UI"
+                                   FontSize="14"
+                                   Padding="0"/>
+                        </StackPanel>
+
+                    </Grid>
+                </StackPanel>
+
+                <!-- Desna kolona - opis -->
+                <StackPanel Grid.Column="2">
+
+                    <Label Content="TEAM DESCRIPTION"
+                           Foreground="{StaticResource AccentColor}"
+                           FontFamily="Agency FB"
+                           FontSize="13"
+                           Padding="0"
+                           Margin="0,0,0,10"/>
+
+                    <Border Background="{StaticResource SecondaryBackgroundColor}"
+                            BorderBrush="{StaticResource BorderColor}"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="15">
+                        <RichTextBox x:Name="DescriptionRichTextBox"
+                                     Background="Transparent"
+                                     Foreground="{StaticResource PrimaryTextColor}"
+                                     BorderThickness="0"
+                                     IsReadOnly="True"
+                                     FontFamily="Segoe UI"
+                                     FontSize="13"
+                                     MinHeight="300"/>
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- Footer -->
+        <Grid Grid.Row="2" Margin="30,15">
+            <Button x:Name="BackButton"
+                    Width="150"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Click="BackButton_Click"
+                    ToolTip="Go back to teams list">
+                <StackPanel Orientation="Horizontal">
+                    <fa5:SvgAwesome Icon="Solid_ArrowLeft"
+                                    Height="13"
+                                    Foreground="{StaticResource SecondaryTextColor}"
+                                    Margin="0,0,6,0"/>
+                    <TextBlock Text="BACK"
+                               Foreground="{StaticResource SecondaryTextColor}"
+                               FontSize="12"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

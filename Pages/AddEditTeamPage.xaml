@@ -296,14 +296,6 @@
                     <Label x:Name="DescriptionErrorLabel"
                            Style="{StaticResource ValidationLabelStyle}"
                            Content=""/>
-
-                    <!-- RTF fajl putanja - opciono -->
-                    <Label Content="RTF File (optional - auto-generated if empty)"
-                           Foreground="{StaticResource PlaceholderTextColor}"
-                           FontFamily="Segoe UI"
-                           FontSize="11"
-                           Margin="0,10,0,2"/>
-
                 </StackPanel>
             </Grid>
         </ScrollViewer>

@@ -128,8 +128,7 @@ namespace ProjekatF1CMS.Pages
 
             if (openFileDialog.ShowDialog() == true)
             {
-                string destinationFolder = System.IO.Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory, "Assets", "Images");
+                string destinationFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Images");
                 Directory.CreateDirectory(destinationFolder);
 
                 string fileName = System.IO.Path.GetFileName(openFileDialog.FileName);
@@ -140,8 +139,7 @@ namespace ProjekatF1CMS.Pages
                 string relativePath = System.IO.Path.Combine("Assets", "Images", fileName);
                 LogoPathTextBox.Text = relativePath;
 
-                LogoPreviewImage.Source = new System.Windows.Media.Imaging.BitmapImage(
-                    new Uri(openFileDialog.FileName));
+                LogoPreviewImage.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(openFileDialog.FileName));
 
                 LogoErrorLabel.Content = string.Empty;
             }

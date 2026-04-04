@@ -53,6 +53,7 @@ namespace ProjekatF1CMS.Pages
             {
                 team.IsSelected = true;
             }
+            TeamsDataGrid.Items.Refresh();
         }
 
         private void SelectAllCheckBox_Unchecked(object sender, RoutedEventArgs e)
@@ -61,6 +62,7 @@ namespace ProjekatF1CMS.Pages
             {
                 team.IsSelected = false;
             }
+            TeamsDataGrid.Items.Refresh();
         }
 
         private void AddTeamButton_Click(object sender, RoutedEventArgs e)
@@ -87,10 +89,7 @@ namespace ProjekatF1CMS.Pages
                     Teams.Remove(team);
                 }
 
-                mainWindow.ShowToastNotification(new ToastNotification(
-                    "Success",
-                    "Selected teams deleted successfully!",
-                    NotificationType.Success));
+                mainWindow.ShowToastNotification(new ToastNotification("Success", "Selected teams deleted successfully!", NotificationType.Success));
             }
         }
 
@@ -105,7 +104,7 @@ namespace ProjekatF1CMS.Pages
             }
             else
             {
-                //mainWindow.NavigateToPage(new TeamDetailsPage(selectedTeam));
+                mainWindow.NavigateToPage(new TeamDetailsPage(selectedTeam));
             }
         }
 
