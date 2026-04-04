@@ -12,7 +12,6 @@
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\RTF\" />
     <Folder Include="Data\" />
-    <Folder Include="Pages\" />
   </ItemGroup>
 
   <ItemGroup>
