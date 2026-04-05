@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ProjekatF1CMS.Helpers"
              StartupUri="MainWindow.xaml">
-    <!-- BOJE -->
+    <!-- Boje-->
     <Application.Resources>
         <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="#1C1C1C"/>
         <SolidColorBrush x:Key="SecondaryBackgroundColor" Color="#2D2D2D"/>
@@ -16,7 +16,7 @@
         <SolidColorBrush x:Key="BorderColor" Color="#444444"/>
         <SolidColorBrush x:Key="SuccessColor" Color="#2ECC71"/>
 
-        <!-- STIL ZA DUGME  -->
+        <!-- Stil za dugme  -->
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{StaticResource AccentColor}"/>
             <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
@@ -69,7 +69,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <!-- STIL ZA SEKUNDARNO DUGME -->
+        <!-- Stil za sekundarno dugme -->
         <Style x:Key="SecondaryButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{StaticResource SecondaryTextColor}"/>
@@ -105,7 +105,7 @@
             </Setter>
         </Style>
 
-        <!-- STIL ZA TEXTBOX -->
+        <!-- Stil za textBox -->
         <Style x:Key="PrimaryTextBoxStyle" TargetType="TextBox">
             <Setter Property="Background" Value="{StaticResource SecondaryBackgroundColor}"/>
             <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
@@ -125,7 +125,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- STIL ZA LABELE -->
+        <!-- Stil za labele -->
         <Style x:Key="PrimaryLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="{StaticResource SecondaryTextColor}"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -133,7 +133,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
-        <!-- STIL ZA VALIDATION LABELE  -->
+        <!-- Stil za validation tabele  -->
         <Style x:Key="ValidationLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="{StaticResource ValidationErrorColor}"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -142,7 +142,7 @@
             <Setter Property="Padding" Value="2,0"/>
         </Style>
 
-        <!-- STIL ZA NASLOV -->
+        <!-- Stil za naslov -->
         <Style x:Key="TitleLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
             <Setter Property="FontFamily" Value="Agency FB"/>
@@ -151,7 +151,7 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
-        <!--  STIL ZA PASSWORDBOX  -->
+        <!--  Stil sa passwordbox -->
         <Style x:Key="PrimaryPasswordBoxStyle" TargetType="PasswordBox">
             <Setter Property="Background" Value="{StaticResource SecondaryBackgroundColor}"/>
             <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
@@ -168,6 +168,26 @@
                     <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
                 </Trigger>
             </Style.Triggers>
+        </Style>
+        <!-- Sakrivanje overflow dugmeta -->
+        <Style TargetType="ToolBar">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToolBar">
+                        <ToolBarPanel IsItemsHost="True"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Stil za comboBox -->
+        <Style x:Key="PrimaryComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
         </Style>
         <local:RelativePathConverter x:Key="RelativePathConverter"/>
     </Application.Resources>

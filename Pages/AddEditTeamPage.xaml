@@ -182,14 +182,15 @@
                     <!-- ToolBar za RichTextBox -->
                     <ToolBar x:Name="EditorToolBar"
                              Background="{StaticResource SecondaryBackgroundColor}"
-                             Margin="0,0,0,2">
+                             Margin="0,0,0,2"
+                             ToolBarTray.IsLocked="True">
 
                         <ToggleButton x:Name="BoldToggleButton"
                                       Command="EditingCommands.ToggleBold"
                                       CommandTarget="{Binding ElementName=DescriptionRichTextBox}"
                                       ToolTip="Bold"
                                       Cursor="Hand"
-                                      Width="28" Height="28">
+                                      Width="30" Height="28">
                             <fa5:SvgAwesome Icon="Solid_Bold"
                                             Height="12"
                                             Foreground="White"/>
@@ -200,7 +201,7 @@
                                       CommandTarget="{Binding ElementName=DescriptionRichTextBox}"
                                       ToolTip="Italic"
                                       Cursor="Hand"
-                                      Width="28" Height="28">
+                                      Width="30" Height="28">
                             <fa5:SvgAwesome Icon="Solid_Italic"
                                             Height="12"
                                             Foreground="White"/>
@@ -211,7 +212,7 @@
                                       CommandTarget="{Binding ElementName=DescriptionRichTextBox}"
                                       ToolTip="Underline"
                                       Cursor="Hand"
-                                      Width="28" Height="28">
+                                      Width="30" Height="28">
                             <fa5:SvgAwesome Icon="Solid_Underline"
                                             Height="12"
                                             Foreground="White"/>
@@ -221,7 +222,9 @@
 
                         <!-- Font Family -->
                         <ComboBox x:Name="FontFamilyComboBox"
-                                  Width="150"
+                                  Background="White"
+                                  Foreground="Black"
+                                  Width="160"
                                   IsEditable="True"
                                   IsTextSearchEnabled="True"
                                   IsTextSearchCaseSensitive="False"
@@ -238,33 +241,45 @@
 
                         <!-- Font Size -->
                         <ComboBox x:Name="FontSizeComboBox"
-                                  Width="60"
+                                  Width="90"
+                                  Background="White"
+                                  Foreground="Black"
                                   Margin="5,0,0,0"
                                   IsEditable="True"
                                   SelectionChanged="FontSizeComboBox_SelectionChanged"
-                                  ToolTip="Font size"/>
+                                  ToolTip="Font size"
+                                  Style="{StaticResource PrimaryComboBoxStyle}"/>
 
                         <Separator/>
 
                         <!-- Boja teksta -->
-                        <ComboBox x:Name="TextColorComboBox"
-                                  Width="130"
-                                  SelectionChanged="TextColorComboBox_SelectionChanged"
-                                  ToolTip="Text color">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Rectangle Width="16"
-                                                   Height="16"
-                                                   Margin="0,0,6,0"
-                                                   Fill="{Binding Name}"/>
-                                        <TextBlock Text="{Binding Name}"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="SelectedColorRect"
+                                Width="30"
+                                Height="22"
+                                Margin="0,0,2,0"
+                                Fill="White"
+                                VerticalAlignment="Center"
+                                Cursor="Hand"/>
+                            <ComboBox x:Name="TextColorComboBox"
+                                    Width="20"
+                                      Height="22"
+                                    SelectionChanged="TextColorComboBox_SelectionChanged"
+                                    ToolTip="Text color">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle Width="16"
+                                                       Height="16"
+                                                       Margin="0,0,6,0"
+                                                       Fill="{Binding Brush}"/>
+                                            <TextBlock Text="{Binding Name}"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
                     </ToolBar>
 
                     <!-- RichTextBox -->

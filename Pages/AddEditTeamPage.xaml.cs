@@ -75,9 +75,9 @@ namespace ProjekatF1CMS.Pages
             {
                 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 48, 72
             };
-            FontSizeComboBox.SelectedValue = 13.0;
+            FontSizeComboBox.SelectedIndex = 4;
 
-            TextColorComboBox.ItemsSource = typeof(Colors).GetProperties().Select(p => (Color)p.GetValue(null)).Select(c => new SolidColorBrush(c)).ToList();
+            TextColorComboBox.ItemsSource = typeof(Colors).GetProperties().Select(p => new {Name = p.Name, Brush = new SolidColorBrush((Color)p.GetValue(null)) }).ToList();
         }
 
         private void PopulateFormWithTeamData(F1Team team)
@@ -347,8 +347,14 @@ namespace ProjekatF1CMS.Pages
 
             object fontSize = DescriptionRichTextBox.Selection.GetPropertyValue(Inline.FontSizeProperty);
             if (fontSize != DependencyProperty.UnsetValue)
-                FontSizeComboBox.SelectedValue = fontSize;
+                FontSizeComboBox.SelectedItem = fontSize;
 
+            object foreground = DescriptionRichTextBox.Selection.GetPropertyValue(Inline.ForegroundProperty);
+            if (foreground != DependencyProperty.UnsetValue && foreground is SolidColorBrush brush)
+            {
+                var colorItem = TextColorComboBox.Items.Cast<dynamic>().FirstOrDefault(c => c.Brush.Color == brush.Color);
+                TextColorComboBox.SelectedItem = colorItem;
+            }
             UpdateWordCount();
         }
 
@@ -370,9 +376,15 @@ namespace ProjekatF1CMS.Pages
 
         private void TextColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (TextColorComboBox.SelectedItem != null && !DescriptionRichTextBox.Selection.IsEmpty)
+            if (TextColorComboBox.SelectedItem != null)
             {
-                DescriptionRichTextBox.Selection.ApplyPropertyValue(Inline.ForegroundProperty, TextColorComboBox.SelectedItem);
+                dynamic selectedColor = TextColorComboBox.SelectedItem;
+                SelectedColorRect.Fill = selectedColor.Brush;
+
+                if (!DescriptionRichTextBox.Selection.IsEmpty)
+                {
+                    DescriptionRichTextBox.Selection.ApplyPropertyValue(Inline.ForegroundProperty, selectedColor.Brush);
+                }
             }
         }
 

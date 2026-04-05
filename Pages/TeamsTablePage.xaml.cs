@@ -16,6 +16,7 @@ using Notification.Wpf;
 using ProjekatF1CMS.Helpers;
 using ProjekatF1CMS.Model;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace ProjekatF1CMS.Pages
 {
@@ -86,8 +87,20 @@ namespace ProjekatF1CMS.Pages
             {
                 foreach (var team in selectedTeams)
                 {
+                    if (!string.IsNullOrEmpty(team.DescriptionFilePath))
+                    {
+                        string fullRtfPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,team.DescriptionFilePath);
+
+                        if (File.Exists(fullRtfPath))
+                        {
+                            File.Delete(fullRtfPath);
+                        }
+                    }
+
                     Teams.Remove(team);
                 }
+
+                SelectAllCheckBox.IsChecked = false;
 
                 mainWindow.ShowToastNotification(new ToastNotification("Success", "Selected teams deleted successfully!", NotificationType.Success));
             }
