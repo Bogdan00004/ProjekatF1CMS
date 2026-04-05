@@ -40,7 +40,16 @@
                    Content="F1 TEAMS"
                    Style="{StaticResource TitleLabelStyle}"
                    FontSize="24"
-                   VerticalAlignment="Center"/>
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center">
+                <Label.Effect>
+                    <DropShadowEffect Color="#E10600"
+                          Direction="0"
+                          ShadowDepth="0"
+                          BlurRadius="15"
+                          Opacity="0.8"/>
+                </Label.Effect>
+            </Label>
 
             <StackPanel Grid.Column="2"
                         Orientation="Horizontal"

@@ -2,21 +2,11 @@
 using Notification.Wpf;
 using ProjekatF1CMS.Helpers;
 using ProjekatF1CMS.Model;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ProjekatF1CMS.Pages
 {
@@ -77,7 +67,7 @@ namespace ProjekatF1CMS.Pages
             };
             FontSizeComboBox.SelectedIndex = 4;
 
-            TextColorComboBox.ItemsSource = typeof(Colors).GetProperties().Select(p => new {Name = p.Name, Brush = new SolidColorBrush((Color)p.GetValue(null)) }).ToList();
+            TextColorComboBox.ItemsSource = typeof(Colors).GetProperties().Select(p => new { Name = p.Name, Brush = new SolidColorBrush((Color)p.GetValue(null)) }).ToList();
         }
 
         private void PopulateFormWithTeamData(F1Team team)
@@ -149,7 +139,7 @@ namespace ProjekatF1CMS.Pages
         {
             if (!ValidateFormData())
             {
-                mainWindow.ShowToastNotification(new ToastNotification("Error","Please fill in all required fields correctly!", NotificationType.Error));
+                mainWindow.ShowToastNotification(new ToastNotification("Error", "Please fill in all required fields correctly!", NotificationType.Error));
                 return;
             }
 
@@ -165,7 +155,7 @@ namespace ProjekatF1CMS.Pages
                 existingTeam.LogoPath = LogoPathTextBox.Text;
                 existingTeam.DescriptionFilePath = rtfPath;
 
-                mainWindow.ShowToastNotification(new ToastNotification("Success",$"{existingTeam.TeamName} updated successfully!",NotificationType.Success));
+                mainWindow.ShowToastNotification(new ToastNotification("Success", $"{existingTeam.TeamName} updated successfully!", NotificationType.Success));
             }
             else
             {
@@ -326,7 +316,7 @@ namespace ProjekatF1CMS.Pages
                 DescriptionRichTextBox.Document.ContentEnd);
 
             string text = textRange.Text.Trim();
-            int wordCount = string.IsNullOrWhiteSpace(text) ? 0: text.Split(new char[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            int wordCount = string.IsNullOrWhiteSpace(text) ? 0 : text.Split(new char[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length;
 
             WordCountLabel.Content = $"Words: {wordCount}";
         }
@@ -370,7 +360,7 @@ namespace ProjekatF1CMS.Pages
         {
             if (FontSizeComboBox.SelectedItem != null && !DescriptionRichTextBox.Selection.IsEmpty)
             {
-                DescriptionRichTextBox.Selection.ApplyPropertyValue(Inline.FontSizeProperty,FontSizeComboBox.SelectedItem);
+                DescriptionRichTextBox.Selection.ApplyPropertyValue(Inline.FontSizeProperty, FontSizeComboBox.SelectedItem);
             }
         }
 

@@ -1,35 +1,44 @@
-﻿using ProjekatF1CMS.Helpers;
-using ProjekatF1CMS.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using ProjekatF1CMS.Helpers;
+using ProjekatF1CMS.Model;
 
-namespace ProjekatF1CMS.Pages
+namespace ProjekatF1CMS
 {
     /// <summary>
-    /// Interaction logic for LoginPage.xaml
+    /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class LoginWindow : Window
     {
-        private MainWindow mainWindow;
         private DataIO serializer = new DataIO();
         private List<User> users;
-
         private string _usernamePlaceholder = "Enter your username";
-        public LoginPage()
+        public LoginWindow()
         {
             InitializeComponent();
-            mainWindow = (MainWindow)Application.Current.MainWindow;
-
             users = serializer.DeSerializeObject<List<User>>("Data/Users.xml");
             if (users == null)
-            {
                 users = new List<User>();
-            }
 
             UsernameTextBox.Text = _usernamePlaceholder;
             UsernameTextBox.Foreground = (SolidColorBrush)Application.Current.Resources["PlaceholderTextColor"];
         }
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidateFormData())
@@ -38,12 +47,15 @@ namespace ProjekatF1CMS.Pages
             string username = UsernameTextBox.Text.Trim();
             string password = PasswordBox.Password;
 
-            User user = users.FirstOrDefault(u => u.Username == username && u.Password == password);
+            User user = users.FirstOrDefault(u =>u.Username == username && u.Password == password);
 
             if (user != null)
             {
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                 mainWindow.LoggedInUser = user;
-                mainWindow.NavigateToPage(new TeamsTablePage());
+                mainWindow.NavigateToPage(new Pages.TeamsTablePage());
+                mainWindow.Show();
+                this.Close();
             }
             else
             {
@@ -85,9 +97,14 @@ namespace ProjekatF1CMS.Pages
             return isValid;
         }
 
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.Close();
+            Application.Current.Shutdown();
         }
 
         private void UsernameTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -107,6 +124,7 @@ namespace ProjekatF1CMS.Pages
                 UsernameTextBox.Foreground = (SolidColorBrush)Application.Current.Resources["PlaceholderTextColor"];
             }
         }
+
         private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
         {
             PasswordPlaceholder.Visibility = Visibility.Collapsed;
@@ -115,9 +133,7 @@ namespace ProjekatF1CMS.Pages
         private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(PasswordBox.Password))
-            {
                 PasswordPlaceholder.Visibility = Visibility.Visible;
-            }
         }
     }
 }
