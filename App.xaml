@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ProjekatF1CMS.Helpers"
              StartupUri="MainWindow.xaml">
-    <!-- Boje-->
     <Application.Resources>
+
+        <!-- ===== KONVERTERI ===== -->
+        <local:RelativePathConverter x:Key="RelativePathConverter"/>
+
+        <!-- ===== BOJE ===== -->
         <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="#1C1C1C"/>
         <SolidColorBrush x:Key="SecondaryBackgroundColor" Color="#2D2D2D"/>
         <SolidColorBrush x:Key="AccentColor" Color="#E10600"/>
@@ -16,7 +20,19 @@
         <SolidColorBrush x:Key="BorderColor" Color="#444444"/>
         <SolidColorBrush x:Key="SuccessColor" Color="#2ECC71"/>
 
-        <!-- Stil za dugme  -->
+        <!-- ===== SHADOW EFEKTI ===== -->
+        <DropShadowEffect x:Key="PrimaryButtonHoverShadow"
+                          Color="#C0C0C0"
+                          Direction="320"
+                          Opacity="0.6"
+                          ShadowDepth="5.25"/>
+        <DropShadowEffect x:Key="SecondaryButtonHoverShadow"
+                          Color="#FF1A1A"
+                          Direction="320"
+                          Opacity="0.6"
+                          ShadowDepth="5.25"/>
+
+        <!-- ===== STIL ZA PRIMARNO DUGME ===== -->
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{StaticResource AccentColor}"/>
             <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
@@ -32,18 +48,21 @@
                         <Border x:Name="ButtonBorder"
                                 Background="{TemplateBinding Background}"
                                 CornerRadius="4">
-                            <ContentPresenter HorizontalAlignment="Center" 
+                            <ContentPresenter HorizontalAlignment="Center"
                                               VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="ButtonBorder" 
-                                        Property="Background" 
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
                                         Value="{StaticResource AccentHoverColor}"/>
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Effect"
+                                        Value="{StaticResource PrimaryButtonHoverShadow}"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="ButtonBorder" 
-                                        Property="Background" 
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
                                         Value="#CC0000"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -55,21 +74,34 @@
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.9" Duration="0:0:0.15"/>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                                 To="14"
+                                                 Duration="0:0:0.6">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase EasingMode="EaseOut"/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
                     <Trigger.ExitActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.15"/>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                                 To="13"
+                                                 Duration="0:0:0.6">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase EasingMode="EaseOut"/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.ExitActions>
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <!-- Stil za sekundarno dugme -->
+
+        <!-- ===== STIL ZA SEKUNDARNO DUGME ===== -->
         <Style x:Key="SecondaryButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{StaticResource SecondaryTextColor}"/>
@@ -87,25 +119,58 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="4">
-                            <ContentPresenter HorizontalAlignment="Center" 
+                            <ContentPresenter HorizontalAlignment="Center"
                                               VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="ButtonBorder" 
-                                        Property="Background" 
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
                                         Value="{StaticResource SecondaryBackgroundColor}"/>
                                 <Setter TargetName="ButtonBorder"
                                         Property="BorderBrush"
                                         Value="{StaticResource SecondaryTextColor}"/>
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Effect"
+                                        Value="{StaticResource SecondaryButtonHoverShadow}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                                 To="14"
+                                                 Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase EasingMode="EaseOut"/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                                 To="13"
+                                                 Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase EasingMode="EaseOut"/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
-        <!-- Stil za textBox -->
+        <!-- ===== STIL ZA TEXTBOX ===== -->
         <Style x:Key="PrimaryTextBoxStyle" TargetType="TextBox">
             <Setter Property="Background" Value="{StaticResource SecondaryBackgroundColor}"/>
             <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
@@ -125,7 +190,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Stil za labele -->
+        <!-- ===== STIL ZA LABELE ===== -->
         <Style x:Key="PrimaryLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="{StaticResource SecondaryTextColor}"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -133,7 +198,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
-        <!-- Stil za validation tabele  -->
+        <!-- ===== STIL ZA VALIDATION LABELE ===== -->
         <Style x:Key="ValidationLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="{StaticResource ValidationErrorColor}"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -142,7 +207,7 @@
             <Setter Property="Padding" Value="2,0"/>
         </Style>
 
-        <!-- Stil za naslov -->
+        <!-- ===== STIL ZA NASLOV ===== -->
         <Style x:Key="TitleLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
             <Setter Property="FontFamily" Value="Agency FB"/>
@@ -151,7 +216,7 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
-        <!--  Stil sa passwordbox -->
+        <!-- ===== STIL ZA PASSWORDBOX ===== -->
         <Style x:Key="PrimaryPasswordBoxStyle" TargetType="PasswordBox">
             <Setter Property="Background" Value="{StaticResource SecondaryBackgroundColor}"/>
             <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
@@ -169,7 +234,8 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <!-- Sakrivanje overflow dugmeta -->
+
+        <!-- ===== SAKRIVANJE TOOLBAR OVERFLOW ===== -->
         <Style TargetType="ToolBar">
             <Setter Property="Template">
                 <Setter.Value>
@@ -179,16 +245,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!-- Stil za comboBox -->
-        <Style x:Key="PrimaryComboBoxStyle" TargetType="ComboBox">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
-        </Style>
-        <Style TargetType="{x:Type ComboBox}">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="Black"/>
-        </Style>
-        <local:RelativePathConverter x:Key="RelativePathConverter"/>
+
     </Application.Resources>
 </Application>

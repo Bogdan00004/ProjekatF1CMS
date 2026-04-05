@@ -247,8 +247,7 @@
                                   Margin="5,0,0,0"
                                   IsEditable="True"
                                   SelectionChanged="FontSizeComboBox_SelectionChanged"
-                                  ToolTip="Font size"
-                                  Style="{StaticResource PrimaryComboBoxStyle}"/>
+                                  ToolTip="Font size"/>
 
                         <Separator/>
 
