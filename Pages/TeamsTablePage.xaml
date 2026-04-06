@@ -27,19 +27,36 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <fa5:SvgAwesome
-                Grid.Column="0"
-                Icon="Solid_Flag"
-                Height="30"
-                Width="30"
-                Foreground="{StaticResource AccentColor}"
-                Margin="20,0,10,0"
-                VerticalAlignment="Center"/>
+            <fa5:SvgAwesome Grid.Column="0"
+                    Icon="Solid_Flag"
+                    Height="30"
+                    Width="30"
+                    Foreground="{StaticResource AccentColor}"
+                    Margin="20,0,160,0"
+                    VerticalAlignment="Center">
+                <fa5:SvgAwesome.Style>
+                    <Style TargetType="fa5:SvgAwesome">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#E10600"
+                                             Direction="0"
+                                             ShadowDepth="0"
+                                             BlurRadius="25"
+                                             Opacity="1" RenderingBias="Quality"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </fa5:SvgAwesome.Style>
+            </fa5:SvgAwesome>
 
             <Label Grid.Column="1"
                    Content="F1 TEAMS"
                    Style="{StaticResource TitleLabelStyle}"
-                   FontSize="24"
+                   FontSize="26"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center">
                 <Label.Effect>
@@ -112,9 +129,7 @@
             <CheckBox x:Name="SelectAllCheckBox"
                       Grid.Column="0"
                       Content="Select All"
-                      Foreground="{StaticResource SecondaryTextColor}"
-                      FontFamily="Segoe UI"
-                      FontSize="13"
+                      Style="{StaticResource PrimaryCheckBoxStyle}"
                       VerticalAlignment="Center"
                       Cursor="Hand"
                       Checked="SelectAllCheckBox_Checked"
@@ -192,7 +207,7 @@
             <DataGrid.Columns>
 
                 <!-- CheckBox kolona -->
-                <DataGridTemplateColumn Width="50">
+                <DataGridTemplateColumn Width="60">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox HorizontalAlignment="Center"
@@ -209,10 +224,17 @@
                 <DataGridTemplateColumn Header="Team Name" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock VerticalAlignment="Center" Margin="10,0">
+                            <TextBlock x:Name="TeamNameText"
+                                    VerticalAlignment="Center"
+                                    Margin="10,0"
+                                    Cursor="Hand"
+                                    Foreground="{StaticResource AccentColor}"
+                                    MouseEnter="TeamNameText_MouseEnter"
+                                    MouseLeave="TeamNameText_MouseLeave">
                                 <Hyperlink x:Name="TeamHyperlink"
-                                           Foreground="{StaticResource AccentColor}"
-                                           Click="TeamHyperlink_Click">
+                                    Foreground="{StaticResource AccentColor}"
+                                    TextDecorations="None"
+                                    Click="TeamHyperlink_Click">
                                     <Run Text="{Binding TeamName}"/>
                                 </Hyperlink>
                             </TextBlock>
@@ -221,14 +243,25 @@
                 </DataGridTemplateColumn>
 
                 <!-- Slika kolona -->
-                <DataGridTemplateColumn Header="Logo" Width="80">
+                <DataGridTemplateColumn Width="80">
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Logo"
+                                HorizontalAlignment="Center"
+                                Foreground="White"
+                                FontFamily="Agency FB"
+                                FontSize="14"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Image Height="40"
-                   Width="60"
-                   Stretch="Uniform"
-                   HorizontalAlignment="Center"
-                   Source="{Binding LogoPath, Converter={StaticResource RelativePathConverter}}"/>
+                                   Width="60"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Source="{Binding LogoPath,
+                             Converter={StaticResource RelativePathConverter}}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -247,22 +280,31 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <TextBlock x:Name="NoTeamsLabel"
+           Grid.Row="2"
+           Text="No teams added yet. Click ADD TEAM to get started."
+           Foreground="{StaticResource PlaceholderTextColor}"
+           FontFamily="Segoe UI"
+           FontSize="16"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"/>
 
         <!-- Footer - Delete dugme -->
-        <Grid Grid.Row="3" Margin="20,15">
+        <Grid Grid.Row="3" Margin="20,10">
             <Button x:Name="DeleteTeamButton"
-                    Width="150"
+                    Width="160"
                     HorizontalAlignment="Left"
-                    Style="{StaticResource SecondaryButtonStyle}"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Background="#8B0000"
                     Click="DeleteTeamButton_Click"
                     ToolTip="Delete selected teams">
                 <StackPanel Orientation="Horizontal">
                     <fa5:SvgAwesome Icon="Solid_Trash"
                                     Height="13"
-                                    Foreground="{StaticResource ValidationErrorColor}"
+                                    Foreground="White"
                                     Margin="0,0,6,0"/>
                     <TextBlock Text="DELETE SELECTED"
-                               Foreground="{StaticResource ValidationErrorColor}"
+                               Foreground="White"
                                FontSize="12"
                                VerticalAlignment="Center"/>
                 </StackPanel>

@@ -21,7 +21,6 @@
 
         <Frame
             x:Name="MainFrame"
-            NavigationUIVisibility="Hidden"
-            Source="Pages/LoginPage.xaml"/>
+            NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProjekatF1CMS.Helpers;
+using ProjekatF1CMS.Model;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using ProjekatF1CMS.Helpers;
-using ProjekatF1CMS.Model;
 
 namespace ProjekatF1CMS
 {
@@ -47,7 +38,7 @@ namespace ProjekatF1CMS
             string username = UsernameTextBox.Text.Trim();
             string password = PasswordBox.Password;
 
-            User user = users.FirstOrDefault(u =>u.Username == username && u.Password == password);
+            User user = users.FirstOrDefault(u => u.Username == username && u.Password == password);
 
             if (user != null)
             {
@@ -99,14 +90,35 @@ namespace ProjekatF1CMS
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            ShowExitDialog();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            ShowExitDialog();
         }
+        private void ShowExitDialog()
+        {
+            Ookii.Dialogs.Wpf.TaskDialog dialog = new Ookii.Dialogs.Wpf.TaskDialog();
+            dialog.WindowTitle = "Exit Confirmation";
+            dialog.MainInstruction = "Are you sure you want to exit?";
+            dialog.Content = "All team data will be saved upon exit.";
+            dialog.MainIcon = Ookii.Dialogs.Wpf.TaskDialogIcon.Warning;
 
+            Ookii.Dialogs.Wpf.TaskDialogButton yesButton = new Ookii.Dialogs.Wpf.TaskDialogButton("Yes, Exit");
+            Ookii.Dialogs.Wpf.TaskDialogButton noButton = new Ookii.Dialogs.Wpf.TaskDialogButton("Cancel");
+
+            dialog.Buttons.Add(yesButton);
+            dialog.Buttons.Add(noButton);
+
+            Ookii.Dialogs.Wpf.TaskDialogButton result = dialog.ShowDialog();
+
+            if (result == yesButton)
+            {
+                ((MainWindow)Application.Current.MainWindow)._isShuttingDown = true;
+                Application.Current.Shutdown();
+            }
+        }
         private void UsernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (UsernameTextBox.Text.Trim().Equals(_usernamePlaceholder))

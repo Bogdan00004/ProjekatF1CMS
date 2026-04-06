@@ -3,7 +3,7 @@
 namespace ProjekatF1CMS.Model
 {
     [Serializable]
-    public class F1Team
+    public class F1Team : INotifyPropertyChanged
     {
         public string TeamName { get; set; }
         public string Headquarters { get; set; }
@@ -13,7 +13,7 @@ namespace ProjekatF1CMS.Model
         public string LogoPath { get; set; }
         public string DescriptionFilePath { get; set; }
         public DateTime DateAdded { get; set; }
-        public F1Team() { }
+        public F1Team(){ }
         private bool _isSelected;
 
         [System.Xml.Serialization.XmlIgnore]

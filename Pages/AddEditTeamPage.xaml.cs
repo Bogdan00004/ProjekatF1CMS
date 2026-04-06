@@ -98,12 +98,16 @@ namespace ProjekatF1CMS.Pages
                 }
             }
 
-            if (!string.IsNullOrEmpty(team.DescriptionFilePath) && File.Exists(team.DescriptionFilePath))
+            if (!string.IsNullOrEmpty(team.DescriptionFilePath))
             {
-                using (FileStream fs = new FileStream(team.DescriptionFilePath, FileMode.Open))
+                string fullRtfPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, team.DescriptionFilePath);
+                if (File.Exists(fullRtfPath))
                 {
-                    TextRange range = new TextRange(DescriptionRichTextBox.Document.ContentStart, DescriptionRichTextBox.Document.ContentEnd);
-                    range.Load(fs, DataFormats.Rtf);
+                    using (FileStream fs = new FileStream(fullRtfPath, FileMode.Open))
+                    {
+                        TextRange range = new TextRange(DescriptionRichTextBox.Document.ContentStart, DescriptionRichTextBox.Document.ContentEnd);
+                        range.Load(fs, DataFormats.Rtf);
+                    }
                 }
             }
         }

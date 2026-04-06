@@ -13,6 +13,7 @@ namespace ProjekatF1CMS
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool _isShuttingDown = false;
         private NotificationManager notificationManager;
         private DataIO serializer = new DataIO();
 
@@ -27,7 +28,7 @@ namespace ProjekatF1CMS
             {
                 Teams = new ObservableCollection<F1Team>();
             }
-           
+
         }
         public void ShowToastNotification(ToastNotification toastNotification)
         {
@@ -43,10 +44,26 @@ namespace ProjekatF1CMS
         }
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to exit?", "Exit Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (_isShuttingDown)
+                return;
 
-            if (result == MessageBoxResult.Yes)
+            Ookii.Dialogs.Wpf.TaskDialog dialog = new Ookii.Dialogs.Wpf.TaskDialog();
+            dialog.WindowTitle = "Exit Confirmation";
+            dialog.MainInstruction = "Are you sure you want to exit?";
+            dialog.Content = "All team data will be saved upon exit.";
+            dialog.MainIcon = Ookii.Dialogs.Wpf.TaskDialogIcon.Warning;
+
+            Ookii.Dialogs.Wpf.TaskDialogButton yesButton = new Ookii.Dialogs.Wpf.TaskDialogButton("Yes, Exit");
+            Ookii.Dialogs.Wpf.TaskDialogButton noButton = new Ookii.Dialogs.Wpf.TaskDialogButton("Cancel");
+
+            dialog.Buttons.Add(yesButton);
+            dialog.Buttons.Add(noButton);
+
+            Ookii.Dialogs.Wpf.TaskDialogButton result = dialog.ShowDialog();
+
+            if (result == yesButton)
             {
+                _isShuttingDown = true;
                 SaveDataAsXML();
                 Application.Current.Shutdown();
             }

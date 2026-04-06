@@ -246,5 +246,12 @@
             </Setter>
         </Style>
 
+        <!-- ===== STIL ZA CHECKBOX ===== -->
+        <Style x:Key="PrimaryCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="{StaticResource SecondaryTextColor}"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
     </Application.Resources>
 </Application>
