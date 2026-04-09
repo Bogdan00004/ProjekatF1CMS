@@ -30,6 +30,7 @@ namespace ProjekatF1CMS.Pages
 
             AdjustUIForUserRole();
             UpdateNoTeamsMessage();
+            UpdateFooterInfo();
             Teams.CollectionChanged += (s, e) =>
             {
                 UpdateNoTeamsMessage();
@@ -123,7 +124,7 @@ namespace ProjekatF1CMS.Pages
 
                 SelectAllCheckBox.IsChecked = false;
                 UpdateNoTeamsMessage();
-
+                UpdateFooterInfo();
                 mainWindow.ShowToastNotification(new ToastNotification("Success", "Selected teams deleted successfully!", NotificationType.Success));
             }
         }
@@ -174,6 +175,22 @@ namespace ProjekatF1CMS.Pages
             Hyperlink hl = (Hyperlink)tb.Inlines.FirstInline;
             hl.Foreground = (SolidColorBrush)Application.Current.Resources["AccentColor"];
             hl.TextDecorations = null;
+        }
+        private void UpdateFooterInfo()
+        {
+           
+            RoleLabel.Content = mainWindow.LoggedInUser.Role.ToString().ToUpper();
+            TotalTeamsLabel.Content = Teams.Count.ToString();
+
+            if (Teams.Count > 0)
+            {
+                var lastTeam = Teams.OrderByDescending(t => t.DateAdded).FirstOrDefault();
+                LastAddedLabel.Content = lastTeam.DateAdded.ToString("dd.MM.yyyy");
+            }
+            else
+            {
+                LastAddedLabel.Content = "N/A";
+            }
         }
 
     }

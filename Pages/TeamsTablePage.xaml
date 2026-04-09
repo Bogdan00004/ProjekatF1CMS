@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="950"
       Title="TeamsTablePage"
-       Background="{StaticResource PrimaryBackgroundColor}">
+      Background="{StaticResource PrimaryBackgroundColor}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -58,7 +58,8 @@
                    Style="{StaticResource TitleLabelStyle}"
                    FontSize="26"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center">
+                   HorizontalAlignment="Center"
+                   Margin="0 0 -20 0">
                 <Label.Effect>
                     <DropShadowEffect Color="#E10600"
                           Direction="0"
@@ -289,26 +290,130 @@
            HorizontalAlignment="Center"
            VerticalAlignment="Center"/>
 
-        <!-- Footer - Delete dugme -->
+        <!-- Footer -->
         <Grid Grid.Row="3" Margin="20,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Delete dugme - samo za Admina -->
             <Button x:Name="DeleteTeamButton"
-                    Width="160"
-                    HorizontalAlignment="Left"
-                    Style="{StaticResource PrimaryButtonStyle}"
-                    Background="#8B0000"
-                    Click="DeleteTeamButton_Click"
-                    ToolTip="Delete selected teams">
+            Grid.Column="0"
+            Width="160"
+            Style="{StaticResource PrimaryButtonStyle}"
+            Background="#8B0000"
+            Click="DeleteTeamButton_Click"
+            ToolTip="Delete selected teams">
                 <StackPanel Orientation="Horizontal">
                     <fa5:SvgAwesome Icon="Solid_Trash"
-                                    Height="13"
-                                    Foreground="White"
-                                    Margin="0,0,6,0"/>
+                            Height="13"
+                            Foreground="White"
+                            Margin="0,0,6,0"/>
                     <TextBlock Text="DELETE SELECTED"
-                               Foreground="White"
-                               FontSize="12"
-                               VerticalAlignment="Center"/>
+                       Foreground="White"
+                       FontSize="12"
+                       VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
+
+            <!-- Info o korisniku - centar -->
+            <Border Grid.Column="1"
+                        Background="{StaticResource SecondaryBackgroundColor}"
+                        BorderBrush="{StaticResource BorderColor}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="15,8"
+                        Margin="10,0">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <fa5:SvgAwesome Icon="Solid_User"
+                            Height="18"
+                            Width="18"
+                            Foreground="{StaticResource AccentColor}"
+                            VerticalAlignment="Center"
+                            Margin="0,0,10,0"/>
+                    <Label Foreground="{StaticResource PlaceholderTextColor}"
+                            FontFamily="Segoe UI"
+                            FontSize="11"
+                            VerticalAlignment="Center"
+                            Padding="0"
+                            Content="LOGGED IN AS"/>
+                    <Border Background="{StaticResource AccentColor}"
+                                CornerRadius="3"
+                                Padding="8,2"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center">
+                        <Label x:Name="RoleLabel"
+                                Foreground="White"
+                                FontFamily="Agency FB"
+                                FontSize="12"
+                                Padding="0"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Statistike - desno -->
+            <StackPanel Grid.Column="2"
+                Orientation="Horizontal">
+                <Border Background="{StaticResource SecondaryBackgroundColor}"
+                        BorderBrush="{StaticResource BorderColor}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="15,8"
+                        Margin="0,0,10,0">
+                    <StackPanel Orientation="Horizontal">
+                        <fa5:SvgAwesome Icon="Solid_Users"
+                                Height="18"
+                                Width="18"
+                                Foreground="{StaticResource AccentColor}"
+                                VerticalAlignment="Center"
+                                Margin="0,0,10,0"/>
+                        <StackPanel VerticalAlignment="Center">
+                            <Label Foreground="{StaticResource PlaceholderTextColor}"
+                                   FontFamily="Segoe UI"
+                                   FontSize="10"
+                                   Padding="0"
+                                   Content="TOTAL TEAMS"/>
+                            <Label x:Name="TotalTeamsLabel"
+                                   Foreground="{StaticResource PrimaryTextColor}"
+                                   FontFamily="Agency FB"
+                                   FontSize="16"
+                                   Padding="0"
+                                   Margin="0,-4,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="{StaticResource SecondaryBackgroundColor}"
+                BorderBrush="{StaticResource BorderColor}"
+                BorderThickness="1"
+                CornerRadius="4"
+                Padding="15,8">
+                    <StackPanel Orientation="Horizontal">
+                        <fa5:SvgAwesome Icon="Solid_Clock"
+                                Height="18"
+                                Width="18"
+                                Foreground="{StaticResource AccentColor}"
+                                VerticalAlignment="Center"
+                                Margin="0,0,10,0"/>
+                        <StackPanel VerticalAlignment="Center">
+                            <Label Foreground="{StaticResource PlaceholderTextColor}"
+                                   FontFamily="Segoe UI"
+                                   FontSize="10"
+                                   Padding="0"
+                                   Content="LAST ADDED"/>
+                            <Label x:Name="LastAddedLabel"
+                                   Foreground="{StaticResource PrimaryTextColor}"
+                                   FontFamily="Agency FB"
+                                   FontSize="16"
+                                   Padding="0"
+                                   Margin="0,-4,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

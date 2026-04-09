@@ -92,13 +92,12 @@
                     Canvas.Top="110"
                     Width="300"
                     VerticalAlignment="Center">
-
-            <fa5:SvgAwesome Icon="Solid_Flag"
-                            Height="90"
-                            Width="90"
-                            Foreground="#E10600"
-                            HorizontalAlignment="Center"
-                            Margin="0,0,0,25"/>
+            <Image Source="pack://application:,,,/Assets/Images/f1Logo.png"
+                    Height="190"
+                    Width="190"
+                    HorizontalAlignment="Center"
+                    Margin="0,-35,0,-50"
+                    Stretch="Uniform"/>
 
             <Label Content="WELCOME BACK"
                    Foreground="White"
@@ -162,12 +161,12 @@
                                     Margin="0,0,12,0"
                                     VerticalAlignment="Center"/>
                     <StackPanel>
-                        <Label Content="10 TEAMS"
+                        <Label Content="11 TEAMS"
                                Foreground="White"
                                FontFamily="Agency FB"
                                FontSize="16"
                                Padding="0"/>
-                        <Label Content="Managing all competing teams"
+                        <Label Content="Competing for the Constructors title"
                                Foreground="#888888"
                                FontFamily="Segoe UI"
                                FontSize="11"

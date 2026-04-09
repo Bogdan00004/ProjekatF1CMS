@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace ProjekatF1CMS.Pages
 {
@@ -94,7 +95,13 @@ namespace ProjekatF1CMS.Pages
                 string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, team.LogoPath);
                 if (File.Exists(fullPath))
                 {
-                    LogoPreviewImage.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(fullPath, UriKind.Absolute));
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(fullPath, UriKind.Absolute);
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+                    LogoPreviewImage.Source = bitmap;
+                    LogoPlaceholder.Visibility = Visibility.Collapsed;
                 }
             }
 
@@ -134,8 +141,8 @@ namespace ProjekatF1CMS.Pages
                 LogoPathTextBox.Text = relativePath;
 
                 LogoPreviewImage.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(openFileDialog.FileName));
-
                 LogoErrorLabel.Content = string.Empty;
+                LogoPlaceholder.Visibility = Visibility.Collapsed;
             }
         }
 
