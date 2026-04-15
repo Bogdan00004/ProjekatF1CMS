@@ -347,8 +347,12 @@ namespace ProjekatF1CMS.Pages
             FontFamilyComboBox.SelectedItem = fontFamily;
 
             object fontSize = DescriptionRichTextBox.Selection.GetPropertyValue(Inline.FontSizeProperty);
-            if (fontSize != DependencyProperty.UnsetValue)
-                FontSizeComboBox.SelectedItem = fontSize;
+            if (fontSize != DependencyProperty.UnsetValue && fontSize is double fontSizeValue)
+            {
+                var matchingSize = FontSizeComboBox.Items.Cast<double>().OrderBy(s => Math.Abs(s - fontSizeValue)).FirstOrDefault();
+                if (matchingSize > 0)
+                    FontSizeComboBox.SelectedItem = matchingSize;
+            }
 
             object foreground = DescriptionRichTextBox.Selection.GetPropertyValue(Inline.ForegroundProperty);
             if (foreground != DependencyProperty.UnsetValue && foreground is SolidColorBrush brush)
@@ -356,6 +360,7 @@ namespace ProjekatF1CMS.Pages
                 var colorItem = TextColorComboBox.Items.Cast<dynamic>().FirstOrDefault(c => c.Brush.Color == brush.Color);
                 TextColorComboBox.SelectedItem = colorItem;
             }
+
             UpdateWordCount();
         }
 

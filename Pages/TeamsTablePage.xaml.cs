@@ -113,11 +113,9 @@ namespace ProjekatF1CMS.Pages
                 {
                     if (!string.IsNullOrEmpty(team.DescriptionFilePath))
                     {
-                        string fullRtfPath = System.IO.Path.Combine(
-                            AppDomain.CurrentDomain.BaseDirectory,
-                            team.DescriptionFilePath);
+                        string fullRtfPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, team.DescriptionFilePath);
                         if (File.Exists(fullRtfPath))
-                                File.Delete(fullRtfPath);
+                            File.Delete(fullRtfPath);
                     }
                     Teams.Remove(team);
                 }
