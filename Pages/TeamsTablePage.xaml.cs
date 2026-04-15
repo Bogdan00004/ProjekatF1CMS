@@ -145,6 +145,7 @@ namespace ProjekatF1CMS.Pages
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.LoggedInUser = null;
+            mainWindow.SaveDataAsXML();
             mainWindow.Hide();
 
             LoginWindow loginWindow = new LoginWindow();

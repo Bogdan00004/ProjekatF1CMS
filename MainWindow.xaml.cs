@@ -38,7 +38,7 @@ namespace ProjekatF1CMS
         {
             MainFrame.Navigate(page);
         }
-        private void SaveDataAsXML()
+        public void SaveDataAsXML()
         {
             serializer.SerializeObject<ObservableCollection<F1Team>>(Teams, "Data/F1Teams.xml");
         }
